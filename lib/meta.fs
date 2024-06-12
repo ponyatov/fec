@@ -15,10 +15,10 @@ let giti =
         Map["", [ "*~"; "*.swp"; "*.log"; ""; "/docs/"; "/obj/"; "/meta/"; "" ]
             "/.vscode", []
             "/bin", [ "*" ]
-            "/doc", [ "" ]
-            "/inc", [ "" ]
-            "/lib", [ "" ]
-            "/src", [ "" ]
+            "/doc", []
+            "/inc", []
+            "/lib", []
+            "/src", []
             "/tmp", [ "*" ]
             "/ref", [ "*" ]]
 
@@ -36,3 +36,9 @@ let apt =
     )
 
 apt
+
+let vscode =
+    for i in [ "settings"; "extensions"; "tasks" ] do
+        File.WriteAllLines("meta/.vscode/" + i + ".json", [])
+
+vscode
