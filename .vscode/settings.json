@@ -12,6 +12,8 @@
 
     // files
     "files.exclude": {
+        ".stfolder/**": true,
+        "bin/Debug/**":true, "obj/**": true,
     },
 
     // editor

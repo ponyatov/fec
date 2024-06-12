@@ -38,7 +38,55 @@ let apt =
 apt
 
 let vscode =
-    for i in [ "settings"; "extensions"; "tasks" ] do
+    for i in [ "c_cpp_properties"; "settings"; "extensions"; "tasks" ] do
         File.WriteAllLines("meta/.vscode/" + i + ".json", [])
 
 vscode
+
+
+let hpp =
+    File.WriteAllLines(
+        @"meta/inc/hpp.hpp",
+        [ "#pragma once"
+          ""
+          "#include <stdio.h>"
+          "#include <stdlib.h>"
+          "#include <assert.h>"
+          ""
+          "extern int main(int argc, char *argv[]);"
+          "extern void arg(int argc, char *argv);" ]
+    )
+
+hpp
+
+let cpp =
+    File.WriteAllLines(
+        @"meta/src/cpp.cpp",
+        [ //
+          "#include \"hpp.hpp\""
+          ""
+          "int main(int argc, char *argv[]) {"
+          "    arg(0, argv[0]);"
+          "    for (int i = 1; i < argc; i++) {  //"
+          "        arg(i, argv[i]);"
+          "    }"
+          "    return 0;"
+          "}"
+          ""
+          "void arg(int argc, char *argv) {  //"
+          "    printf(\"argv[%i] = <%s>\\n\", argc, argv);"
+          "}" ]
+    )
+
+cpp
+
+let ini = //
+    File.WriteAllLines(
+        @"meta/lib/ini.ini",
+        [ //
+          "# line comment"
+          ""
+          "nop halt" ]
+    )
+
+ini
