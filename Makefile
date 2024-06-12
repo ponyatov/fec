@@ -69,7 +69,10 @@ $(MODULE).fsproj:
 .config/dotnet-tools.json:
 	dotnet new tool-manifest
 
-lab:
-# dotnet interactive jupyter install
+lab_install: .config/dotnet-tools.json
 	dotnet tool install -g fantomas
 	dotnet tool install -g Microsoft.dotnet-interactive
+	dotnet run interactive jupyter install
+
+lab:
+	bin/jupyter-lab
