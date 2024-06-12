@@ -15,3 +15,13 @@ let giti =
         File.WriteAllLines("meta" + i + "/.gitignore", [])
 
 giti
+
+let apt =
+    File.WriteAllLines(
+        @"meta/apt.txt",
+        [ "git make curl"
+          "code meld doxygen clang-format"
+          "g++ flex bison libreadline-dev" ]
+    )
+
+apt

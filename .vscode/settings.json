@@ -12,10 +12,6 @@
 
     // files
     "files.exclude": {
-        "lib/python*/**": true, "lib64/**": true,
-        "bin/python*": true, "bin/pip*": true,
-        "bin/?ctivate*": true, "share/**": true,
-        "bin/jupyter*": true, "bin/ipython*": true,
     },
 
     // editor

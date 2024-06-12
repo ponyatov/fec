@@ -68,13 +68,4 @@ $(MODULE).fsproj:
 	dotnet new console --language F#
 .config/dotnet-tools.json:
 	dotnet new tool-manifest
-
-lab_install: .config/dotnet-tools.json
 	dotnet tool install -g fantomas
-	dotnet tool install -g Microsoft.dotnet-interactive
-	. bin/activate
-	jupyter kernelspec list
-	dotnet interactive jupyter install
-
-lab:
-	bin/jupyter-lab
