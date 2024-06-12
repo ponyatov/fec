@@ -13,6 +13,8 @@ GZ  = $(HOME)/gz
 CURL   = curl -L -o
 CF     = clang-format -style=file -i
 DOT    = /usr/bin/dotnet
+PY     = $(BIN)/python3
+PIP    = $(BIN)/pip3
 
 # src
 C += $(wildcard src/*.c*)
@@ -41,12 +43,16 @@ bin/$(MODULE): $(C) $(H)
 .PHONY: install update
 install: /etc/apt/sources.list.d/microsoft-prod.list
 	$(MAKE) update
-update:
+update: $(PIP)
 	sudo apt update
 	sudo apt install -uy `cat apt.txt`
+	$(PIP) install -U -r requirements.txt
 
 /etc/apt/sources.list.d/microsoft-prod.list: $(GZ)/packages-microsoft-prod.deb
 	sudo dpkg -i $<
 
 $(GZ)/packages-microsoft-prod.deb:
 	$(CURL) $@ https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb
+
+$(PY) $(PIP):
+	python3 -m venv .
