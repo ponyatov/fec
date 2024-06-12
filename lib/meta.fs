@@ -12,7 +12,7 @@ dir
 
 let giti =
     for i in dirs do
-        File.WriteAllLines("meta" + i + "/.gitignore", [])
+        File.WriteAllLines("meta" + i + "/.gitignore", [ "!.gitignore" ])
 
 giti
 
