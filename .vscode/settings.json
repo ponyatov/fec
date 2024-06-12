@@ -10,6 +10,14 @@
                     "args": {"text": "\u000D clear ; LANG=C make all \u000D"}}]}
     ],
 
+    // files
+    "files.exclude": {
+        "lib/python*/**": true, "lib64/**": true,
+        "bin/python*": true, "bin/pip*": true,
+        "bin/?ctivate*": true, "share/**": true,
+        "bin/jupyter*": true, "bin/ipython*": true,
+    },
+
     // editor
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
