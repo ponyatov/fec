@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="lib/config.fs" />
+    <Compile Include="lib/lic.fs" />
     <Compile Include="lib/meta.fs" />
   </ItemGroup>
 

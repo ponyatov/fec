@@ -1,5 +1,7 @@
 ﻿open System.IO
 
+open config
+
 let dirs =
     [ ""; "/.vscode"; "/bin"; "/doc"; "/lib"; "/inc"; "/src"; "/ref"; "/tmp" ]
 
@@ -46,7 +48,7 @@ vscode
 
 let hpp =
     File.WriteAllLines(
-        @"meta/inc/hpp.hpp",
+        $"meta/inc/{MODULE}.hpp",
         [ "#pragma once"
           ""
           "#include <stdio.h>"
@@ -61,9 +63,9 @@ hpp
 
 let cpp =
     File.WriteAllLines(
-        @"meta/src/cpp.cpp",
+        $"meta/src/{MODULE}.cpp",
         [ //
-          "#include \"hpp.hpp\""
+          $"#include \"{MODULE}.hpp\""
           ""
           "int main(int argc, char *argv[]) {"
           "    arg(0, argv[0]);"
@@ -82,7 +84,7 @@ cpp
 
 let ini = //
     File.WriteAllLines(
-        @"meta/lib/ini.ini",
+        $"meta/lib/{MODULE}.ini",
         [ //
           "# line comment"
           ""
@@ -90,3 +92,79 @@ let ini = //
     )
 
 ini
+
+let readme = //
+    File.WriteAllLines(
+        @"meta/README.md",
+        [ $"# `{MODULE}`"
+          $"## {TITLE}"
+          ""
+          $"(c) {AUTHOR} <<{EMAIL}>> {YEAR} {LIC}"
+          ""
+          $"github: https://github.com/ponyatov/{MODULE}" ]
+    )
+
+readme
+
+let cf = //
+    File.WriteAllLines(
+        @"meta/.clang-format",
+        [ "
+BasedOnStyle: Google
+IndentWidth:  4
+TabWidth:     4
+UseTab:       Never
+ColumnLimit:  80
+UseCRLF:      false
+
+SortIncludes: false
+
+AllowShortBlocksOnASingleLine: Always
+AllowShortFunctionsOnASingleLine: All" ]
+    )
+
+cf
+
+let mk = //
+
+    let var = [ "# var"; "MODULE  = $(notdir $(CURDIR))"; "" ]
+
+    let dirs =
+        [ //
+          "# dirs"
+          "CWD = $(CURDIR)"
+          "BIN = $(CWD)/bin"
+          "DOC = $(CWD)/doc"
+          "SRC = $(CWD)/src"
+          "TMP = $(CWD)/tmp"
+          "GZ  = $(HOME)/gz"
+          "" ]
+
+    let tool =
+        [ //
+          "# tool"
+          "CURL   = curl -L -o"
+          "CF     = clang-format -style=file -i"
+          "" ]
+
+    let src =
+        [ //
+          "# src"
+          "C += $(wildcard src/*.c*)"
+          "H += $(wildcard inc/*.h*)"
+          "S += lib/$(MODULE).ini $(wildcard lib/*.f)"
+          "" ]
+
+    let cfg = [ "# cfg"; "" ]
+    let all = [ "# all"; "" ]
+    let format = [ "# format"; "" ]
+    let rule = [ "# rule"; "" ]
+    let doc = [ "# doc"; "" ]
+    let install = [ "# install"; "" ]
+    let merge = [ "# merge"; "" ]
+    File.WriteAllLines(@"meta/Makefile", var @ dirs @ tool @ src @ cfg @ all @ format @ rule @ doc @ install @ merge)
+
+mk
+
+open lic
+lic YEAR AUTHOR

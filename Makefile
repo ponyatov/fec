@@ -13,13 +13,11 @@ GZ  = $(HOME)/gz
 CURL   = curl -L -o
 CF     = clang-format -style=file -i
 DOT    = /usr/bin/dotnet
-PY     = $(BIN)/python3
-PIP    = $(BIN)/pip3
 
 # src
 C += $(wildcard src/*.c*)
 H += $(wildcard inc/*.h*)
-S += $(wildcard lib/*.ini) $(wildcard lib/*.f)
+S += lib/$(MODULE).ini $(wildcard lib/*.f)
 F += $(wildcard lib/*.fs)
 
 # cfg
