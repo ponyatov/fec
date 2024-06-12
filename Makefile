@@ -63,9 +63,11 @@ $(GZ)/packages-microsoft-prod.deb:
 $(PY) $(PIP):
 	python3 -m venv .
 
-
 $(MODULE).fsproj:
 	dotnet new console --language F#
+.config/dotnet-tools.json:
+	dotnet new tool-manifest
 
 lab:
-	dotnet interactive jupyter install
+# dotnet interactive jupyter install
+	dotnet tool install fantomas
