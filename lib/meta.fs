@@ -12,31 +12,10 @@ let dir =
 
 dir
 
-let giti =
-    let mask =
-        Map["", [ "*~"; "*.swp"; "*.log"; ""; "/docs/"; "/obj/"; "/meta/"; "" ]
-            "/.vscode", []
-            "/bin", [ "*" ]
-            "/doc", []
-            "/inc", []
-            "/lib", []
-            "/src", []
-            "/tmp", [ "*" ]
-            "/ref", [ "*" ]]
+open giti
+giti dirs
 
-    for i in dirs do
-        File.WriteAllLines("meta" + i + "/.gitignore", mask[i] @ [ "!.gitignore" ])
-
-giti
-
-let apt =
-    File.WriteAllLines(
-        @"meta/apt.txt",
-        [ "git make curl"
-          "code meld doxygen clang-format"
-          "g++ flex bison libreadline-dev" ]
-    )
-
+open apt
 apt
 
 let vscode =
