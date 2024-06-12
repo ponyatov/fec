@@ -4,5 +4,6 @@
 
 /docs/
 /obj/
+/meta/
 
 !.gitignore
