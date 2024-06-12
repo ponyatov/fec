@@ -1,4 +1,4 @@
 ﻿open System.IO
 
-for i in ["meta"] do
+for i in [ "meta" ] do
     Directory.CreateDirectory(i) |> ignore

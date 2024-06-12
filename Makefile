@@ -34,12 +34,13 @@ all: bin/$(MODULE) $(S)
 f:
 	dotnet run
 
-
 # format
 .PHONY: format
-format: tmp/format_cpp
+format: tmp/format_cpp tmp/format_fs
 tmp/format_cpp: $(C) $(H)
 	$(CF) $? && touch $@
+tmp/format_fs: $(F)
+	dotnet fantomas $? && touch $@
 
 # rule
 bin/$(MODULE): $(C) $(H)
