@@ -17,13 +17,14 @@ DOT    = /usr/bin/dotnet
 # src
 C += $(wildcard src/*.c*)
 H += $(wildcard inc/*.h*)
+F += $(wildcard lib/*.ini) $(wildcard lib/*.f)
 
 # cfg
 CFLAGS += -Iinc -Itmp
 
 # all
 .PHONY: all
-all: bin/$(MODULE)
+all: bin/$(MODULE) $(F)
 	$^
 
 # format
