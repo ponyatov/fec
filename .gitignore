@@ -7,5 +7,8 @@
 lib/python*/
 lib64
 /pyvenv.cfg
+share/
+
+/obj/
 
 !.gitignore

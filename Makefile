@@ -19,14 +19,15 @@ PIP    = $(BIN)/pip3
 # src
 C += $(wildcard src/*.c*)
 H += $(wildcard inc/*.h*)
-F += $(wildcard lib/*.ini) $(wildcard lib/*.f)
+S += $(wildcard lib/*.ini) $(wildcard lib/*.f)
+F += $(wildcard lib/*.fs)
 
 # cfg
 CFLAGS += -Iinc -Itmp
 
 # all
 .PHONY: all
-all: bin/$(MODULE) $(F)
+all: bin/$(MODULE) $(S)
 	$^
 
 # format
