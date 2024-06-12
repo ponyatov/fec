@@ -71,4 +71,5 @@ $(MODULE).fsproj:
 
 lab:
 # dotnet interactive jupyter install
-	dotnet tool install fantomas
+	dotnet tool install -g fantomas
+	dotnet tool install -g Microsoft.dotnet-interactive
