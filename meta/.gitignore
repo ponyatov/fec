@@ -1,1 +1,9 @@
+*~
+*.swp
+*.log
+
+/docs/
+/obj/
+/meta/
+
 !.gitignore
