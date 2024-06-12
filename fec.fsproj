@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="lib/Program.fs" />
+    <Compile Include="lib/meta.fs" />
   </ItemGroup>
 
 </Project>

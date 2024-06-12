@@ -30,6 +30,11 @@ CFLAGS += -Iinc -Itmp
 all: bin/$(MODULE) $(S)
 	$^
 
+.PHONY: f
+f:
+	dotnet run
+
+
 # format
 .PHONY: format
 format: tmp/format_cpp
